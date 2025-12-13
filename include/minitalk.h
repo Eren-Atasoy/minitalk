@@ -16,18 +16,11 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
-
-/* Utils function prototypes */
-int		ft_atoi(const char *str);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_putnbr(int n);
+# include "libft.h"
 
 /* Client function prototypes */
-void	send_bit(int pid, int bit);
-void	send_char(int pid, char c);
+void	send_char(int pid, unsigned char c);
 void	send_string(int pid, char *str);
 int		is_valid_pid(char *str);
 
 #endif
-

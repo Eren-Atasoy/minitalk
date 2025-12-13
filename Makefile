@@ -18,47 +18,53 @@ CFLAGS		= -Wall -Wextra -Werror
 
 SRC_DIR		= src
 INC_DIR		= include
+LIBFT_DIR	= libft
+LIBFT		= $(LIBFT_DIR)/libft.a
 
-SRC_UTILS	= $(SRC_DIR)/utils.c
 SRC_CUTILS	= $(SRC_DIR)/client_utils.c
-SRC_SERVER	= $(SRC_DIR)/server.c $(SRC_UTILS)
-SRC_CLIENT	= $(SRC_DIR)/client.c $(SRC_UTILS) $(SRC_CUTILS)
+SRC_SERVER	= $(SRC_DIR)/server.c
+SRC_CLIENT	= $(SRC_DIR)/client.c $(SRC_CUTILS)
 
 OBJ_SERVER	= $(SRC_SERVER:.c=.o)
 OBJ_CLIENT	= $(SRC_CLIENT:.c=.o)
 
-all: $(NAME_SERVER) $(NAME_CLIENT)
+all: $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
 
-$(NAME_SERVER): $(OBJ_SERVER)
-	$(CC) $(CFLAGS) $(OBJ_SERVER) -o $(NAME_SERVER)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME_CLIENT): $(OBJ_CLIENT)
-	$(CC) $(CFLAGS) $(OBJ_CLIENT) -o $(NAME_CLIENT)
+$(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
 
-%.o: %.c $(INC_DIR)/minitalk.h
-	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+$(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
+
+%.o: %.c $(INC_DIR)/minitalk.h $(LIBFT_DIR)/libft.h
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 clean:
+	$(MAKE) -C $(LIBFT_DIR) clean
 	rm -f $(SRC_DIR)/*.o
 
 fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME_SERVER) $(NAME_CLIENT)
 
 re: fclean all
 
 # Bonus
-SRC_SERVER_BONUS	= $(SRC_DIR)/server_bonus.c $(SRC_UTILS)
-SRC_CLIENT_BONUS	= $(SRC_DIR)/client_bonus.c $(SRC_UTILS) $(SRC_CUTILS)
+SRC_SERVER_B	= $(SRC_DIR)/server_bonus.c
+SRC_CLIENT_B	= $(SRC_DIR)/client_bonus.c $(SRC_CUTILS)
 
-OBJ_SERVER_BONUS	= $(SRC_SERVER_BONUS:.c=.o)
-OBJ_CLIENT_BONUS	= $(SRC_CLIENT_BONUS:.c=.o)
+OBJ_SERVER_B	= $(SRC_SERVER_B:.c=.o)
+OBJ_CLIENT_B	= $(SRC_CLIENT_B:.c=.o)
 
-bonus: fclean $(NAME_SERVER)_bonus $(NAME_CLIENT)_bonus
+bonus: fclean $(LIBFT) $(NAME_SERVER)_bonus $(NAME_CLIENT)_bonus
 
-$(NAME_SERVER)_bonus: $(OBJ_SERVER_BONUS)
-	$(CC) $(CFLAGS) $(OBJ_SERVER_BONUS) -o $(NAME_SERVER)
+$(NAME_SERVER)_bonus: $(OBJ_SERVER_B) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_SERVER_B) $(LIBFT) -o $(NAME_SERVER)
 
-$(NAME_CLIENT)_bonus: $(OBJ_CLIENT_BONUS)
-	$(CC) $(CFLAGS) $(OBJ_CLIENT_BONUS) -o $(NAME_CLIENT)
+$(NAME_CLIENT)_bonus: $(OBJ_CLIENT_B) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ_CLIENT_B) $(LIBFT) -o $(NAME_CLIENT)
 
 .PHONY: all clean fclean re bonus
