@@ -12,51 +12,53 @@
 
 #include "minitalk.h"
 
-volatile sig_atomic_t	g_ack = 0;
+static volatile sig_atomic_t	g_received = 0;
 
-static void	ack_handler(int sig)
+static void	confirm_signal(int signum)
 {
-	(void)sig;
-	g_ack = 1;
+	(void)signum;
+	g_received = 1;
 }
 
-static int	setup_client(int *server_pid, char *pid_str)
+static void	transmit_char(pid_t server_pid, unsigned char character)
 {
-	struct sigaction	sa;
+	int	bit_pos;
 
-	*server_pid = ft_atoi(pid_str);
-	if (!is_valid_pid(pid_str) || *server_pid <= 0)
+	bit_pos = 7;
+	while (bit_pos >= 0)
 	{
-		ft_putstr_fd("Error: Invalid PID\n", 2);
-		return (1);
+		g_received = 0;
+		if ((character >> bit_pos) & 1)
+			kill(server_pid, SIGUSR1);
+		else
+			kill(server_pid, SIGUSR2);
+		while (!g_received)
+			pause();
+		bit_pos--;
 	}
-	if (kill(*server_pid, 0) == -1)
-	{
-		ft_putstr_fd("Error: Server not found\n", 2);
-		return (1);
-	}
-	sa.sa_handler = ack_handler;
-	sa.sa_flags = 0;
-	sigemptyset(&sa.sa_mask);
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-	{
-		ft_putstr_fd("Error: sigaction failed\n", 2);
-		return (1);
-	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	pid_t				server_pid;
+	int					idx;
+	struct sigaction	act;
 
 	if (argc != 3)
+		return (ft_putstr_fd("Usage: ./client <pid> <msg>\n", 2), 1);
+	server_pid = ft_atoi(argv[1]);
+	if (server_pid <= 0 || kill(server_pid, 0) == -1)
+		return (ft_putstr_fd("Error: Invalid PID\n", 2), 1);
+	sigemptyset(&act.sa_mask);
+	act.sa_flags = SA_RESTART;
+	act.sa_handler = confirm_signal;
+	sigaction(SIGUSR1, &act, NULL);
+	idx = 0;
+	while (argv[2][idx])
 	{
-		ft_putstr_fd("Usage: ./client [server_pid] [message]\n", 1);
-		return (1);
+		transmit_char(server_pid, (unsigned char)argv[2][idx]);
+		idx++;
 	}
-	if (setup_client(&pid, argv[1]) != 0)
-		return (1);
-	send_string(pid, argv[2]);
+	transmit_char(server_pid, 0);
 	return (0);
 }

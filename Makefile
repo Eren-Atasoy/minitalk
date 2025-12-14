@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME		= minitalk
 NAME_SERVER	= server
 NAME_CLIENT	= client
 
@@ -21,14 +22,15 @@ INC_DIR		= include
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-SRC_CUTILS	= $(SRC_DIR)/client_utils.c
 SRC_SERVER	= $(SRC_DIR)/server.c
-SRC_CLIENT	= $(SRC_DIR)/client.c $(SRC_CUTILS)
+SRC_CLIENT	= $(SRC_DIR)/client.c
 
 OBJ_SERVER	= $(SRC_SERVER:.c=.o)
 OBJ_CLIENT	= $(SRC_CLIENT:.c=.o)
 
-all: $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(NAME_SERVER) $(NAME_CLIENT)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -39,7 +41,7 @@ $(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
 $(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
 
-%.o: %.c $(INC_DIR)/minitalk.h $(LIBFT_DIR)/libft.h
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/minitalk.h $(LIBFT_DIR)/libft.h
 	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 clean:
@@ -54,7 +56,7 @@ re: fclean all
 
 # Bonus
 SRC_SERVER_B	= $(SRC_DIR)/server_bonus.c
-SRC_CLIENT_B	= $(SRC_DIR)/client_bonus.c $(SRC_CUTILS)
+SRC_CLIENT_B	= $(SRC_DIR)/client_bonus.c
 
 OBJ_SERVER_B	= $(SRC_SERVER_B:.c=.o)
 OBJ_CLIENT_B	= $(SRC_CLIENT_B:.c=.o)
@@ -66,5 +68,8 @@ $(NAME_SERVER)_bonus: $(OBJ_SERVER_B) $(LIBFT)
 
 $(NAME_CLIENT)_bonus: $(OBJ_CLIENT_B) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ_CLIENT_B) $(LIBFT) -o $(NAME_CLIENT)
+
+$(SRC_DIR)/%_bonus.o: $(SRC_DIR)/%_bonus.c $(INC_DIR)/minitalk_bonus.h $(LIBFT_DIR)/libft.h
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 .PHONY: all clean fclean re bonus
