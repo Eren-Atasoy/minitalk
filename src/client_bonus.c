@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	if (server_pid <= 0 || kill(server_pid, 0) == -1)
 		return (ft_putstr_fd("Error: Invalid PID\n", 2), 1);
 	sigemptyset(&act.sa_mask);
-	act.sa_flags = SA_RESTART;
+	act.sa_flags = 0;
 	act.sa_handler = confirm_signal;
 	sigaction(SIGUSR1, &act, NULL);
 	idx = 0;

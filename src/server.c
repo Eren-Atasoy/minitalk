@@ -14,8 +14,8 @@
 
 static void	receive_bit(int signum, siginfo_t *data, void *ucontext)
 {
-	static unsigned char	byte = 0;
-	static int				bit_pos = 0;
+	static unsigned char	byte;
+	static int				bit_pos;
 
 	(void)ucontext;
 	byte <<= 1;
@@ -51,3 +51,4 @@ int	main(void)
 		pause();
 	return (0);
 }
+
