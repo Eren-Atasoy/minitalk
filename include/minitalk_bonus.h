@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <student@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 00:00:00 by student           #+#    #+#             */
-/*   Updated: 2025/12/12 00:00:00 by student          ###   ########.fr       */
+/*   Created: 2025/12/14 16:39:38 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/12/14 16:39:38 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
