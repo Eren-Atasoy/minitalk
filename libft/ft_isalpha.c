@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eratasoy <erenatasoy04@gmail.com>          +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 19:24:07 by eratasoy          #+#    #+#             */
-/*   Updated: 2025/05/29 20:59:18 by eratasoy         ###   ########.fr       */
+/*   Created: 2025/07/10 10:53:53 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/07/10 10:54:00 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

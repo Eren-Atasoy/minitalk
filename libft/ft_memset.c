@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eratasoy <erenatasoy04@gmail.com>          +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 20:59:46 by eratasoy          #+#    #+#             */
-/*   Updated: 2025/06/04 15:41:24 by eratasoy         ###   ########.fr       */
+/*   Created: 2025/07/10 10:57:49 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/07/10 10:57:51 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eratasoy <erenatasoy04@gmail.com>          +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 19:26:44 by eratasoy          #+#    #+#             */
-/*   Updated: 2025/05/29 20:59:27 by eratasoy         ###   ########.fr       */
+/*   Created: 2025/07/10 10:55:41 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/07/10 10:55:43 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

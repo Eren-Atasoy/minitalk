@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eratasoy <erenatasoy04@gmail.com>          +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 13:56:19 by eratasoy          #+#    #+#             */
-/*   Updated: 2025/06/02 14:04:48 by eratasoy         ###   ########.fr       */
+/*   Created: 2025/07/10 10:57:14 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/07/10 10:57:17 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

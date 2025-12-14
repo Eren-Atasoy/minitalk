@@ -37,19 +37,20 @@ static void	transmit_char(pid_t server_pid, unsigned char character)
 		bit_pos--;
 	}
 }
+
 static	int	pid_checker(char *pid_str)
 {
 	int	count;
-	int pid;
+	int	pid;
 
 	count = ft_strlen(pid_str);
-	if(count > 7)
+	if (count > 7)
 	{
 		write(2, "Error: PID too long\n", 20);
 		exit(1);
 	}
 	pid = ft_atoi(pid_str);
-	if(pid <= 0 || pid >= 4194304)
+	if (pid <= 0 || pid >= 4194304)
 	{
 		write(2, "Error: Invalid PID\n", 19);
 		exit(1);

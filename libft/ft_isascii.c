@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eratasoy <erenatasoy04@gmail.com>          +#+  +:+       +#+        */
+/*   By: eratasoy <eratasoy@student.42istanbul      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 20:27:39 by eratasoy          #+#    #+#             */
-/*   Updated: 2025/05/29 20:59:24 by eratasoy         ###   ########.fr       */
+/*   Created: 2025/07/10 10:56:57 by eratasoy          #+#    #+#             */
+/*   Updated: 2025/07/10 10:56:59 by eratasoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
