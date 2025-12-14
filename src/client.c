@@ -37,6 +37,25 @@ static void	transmit_char(pid_t server_pid, unsigned char character)
 		bit_pos--;
 	}
 }
+static	int	pid_checker(char *pid_str)
+{
+	int	count;
+	int pid;
+
+	count = ft_strlen(pid_str);
+	if(count > 7)
+	{
+		write(2, "Error: PID too long\n", 20);
+		exit(1);
+	}
+	pid = ft_atoi(pid_str);
+	if(pid <= 0 || pid >= 4194304)
+	{
+		write(2, "Error: Invalid PID\n", 19);
+		exit(1);
+	}
+	return (pid);
+}
 
 int	main(int argc, char **argv)
 {
@@ -45,8 +64,8 @@ int	main(int argc, char **argv)
 	struct sigaction	act;
 
 	if (argc != 3)
-		return (ft_putstr_fd("Usage: ./client <pid> <msg>\n", 2), 1);
-	server_pid = ft_atoi(argv[1]);
+		return (ft_putstr_fd("Usage: ./client <pid> <message>\n", 2), 1);
+	server_pid = pid_checker(argv[1]);
 	if (server_pid <= 0 || kill(server_pid, 0) == -1)
 		return (ft_putstr_fd("Error: Invalid PID\n", 2), 1);
 	sigemptyset(&act.sa_mask);
